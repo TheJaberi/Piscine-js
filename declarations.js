@@ -4,4 +4,4 @@ Object.freeze(arr)
 const obj = { str: "", num: 0, bool:false, undef: undefined }
 Object.freeze(obj)
 const nested = { arr: [4,undefined,'2'], obj: { str: "", num:0, bool: false} }
-Object.freeze(nested, nested.arr, nested.obj)
+Object.freeze(nested)
