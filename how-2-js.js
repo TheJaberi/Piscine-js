@@ -1,5 +1,1 @@
-console.log('Hello World')
-const str = ""
-const num = 0
-const bool = false
-const undef = undefined
+console.log('Hello World');
