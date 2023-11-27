@@ -12,5 +12,6 @@ const orbitalPeriods = {
 function dogYears(planet, ageInSeconds) {
   const earthYears = ageInSeconds / 31557600; // Convert seconds to Earth years
   const planetYears = earthYears / orbitalPeriods[planet]; // Convert Earth years to planet years
-  return (planetYears * 7).toFixed(2); // Convert to dog years
+  const dogYearsOnPlanet = planetYears * 7; // Convert to dog years
+  return dogYearsOnPlanet.toFixed(2); // Return with 2 decimal places
 }
