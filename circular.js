@@ -1,1 +1,2 @@
-let circular = { circular: circular };
+let circular = {};
+circular.circular = circular;
