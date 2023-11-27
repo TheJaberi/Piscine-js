@@ -1,6 +1,6 @@
 function id(value) {
-    return value;
+  return value;
 }
 function getLength(input) {
-    return input.length;
+  return input.length;
 }
