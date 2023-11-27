@@ -8,5 +8,5 @@ function sign(num) {
   }
 }
 function sameSign(a, b) {
-  return sign(a) === sign(b);
+  return sign(a) == sign(b);
 }
