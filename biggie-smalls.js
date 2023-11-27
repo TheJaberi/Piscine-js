@@ -1,2 +1,2 @@
-let smalls = Number.MIN_VALUE;
-let biggie = Number.MAX_VALUE;
+const smalls = Number.NEGATIVE_INFINITY;
+const biggie = Number.POSITIVE_INFINITY;
