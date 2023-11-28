@@ -31,15 +31,27 @@ function arrToObj(arr) {
 function strToObj(str) {
   return Object.assign({}, str);
 }
+
 function superTypeOf(value) {
-  if (value === null) {
+  if (Array.isArray(value)) {
+    return "Array";
+  } else if (value instanceof Set) {
+    return "Set";
+  } else if (value instanceof Map) {
+    return "Map";
+  } else if (value === null) {
     return "null";
+  } else if (typeof value === "object") {
+    return "Object";
+  } else if (typeof value === "string") {
+    return "String";
+  } else if (typeof value === "number") {
+    return "Number";
+  } else if (typeof value === "boolean") {
+    return "Boolean";
+  } else if (typeof value === "undefined") {
+    return "undefined";
+  } else if (typeof value === "function") {
+    return "Function";
   }
-  const type = typeof value;
-  if (type === "object" || type === "function") {
-    if (value.constructor && value.constructor.name) {
-      return value.constructor.name;
-    }
-  }
-  return type.charAt(0).toUpperCase() + type.slice(1);
 }
