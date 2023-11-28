@@ -35,10 +35,11 @@ function superTypeOf(value) {
   if (value === null) {
     return "null";
   }
-  if (typeof value === "object" || typeof value === "function") {
+  const type = typeof value;
+  if (type === "object" || type === "function") {
     if (value.constructor && value.constructor.name) {
       return value.constructor.name;
     }
   }
-  return typeof value;
+  return type.charAt(0).toUpperCase() + type.slice(1);
 }
