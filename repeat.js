@@ -1,7 +1,4 @@
 function repeat(str, num) {
-  if (str == "") {
-    return "";
-  }
   if (num <= 0) {
     return "";
   }
