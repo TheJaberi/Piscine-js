@@ -5,7 +5,7 @@ function repeat(str, num) {
   if (num <= 0) {
     return "";
   }
-  for (i = 0; i < num; i++) {
+  for (let i = 0; i < num; i++) {
     str += str;
   }
   return str;
