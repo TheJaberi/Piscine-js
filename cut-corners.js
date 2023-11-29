@@ -1,76 +1,86 @@
-function reduceLargeNumber(number) {
-  const largeNumber = 0xfffffffff;
-  while (number > largeNumber) {
-    number -= largeNumber;
+function round(int) {
+  let neg = false;
+  if (int < 0) {
+    neg = true;
+    int = -int;
   }
-  return number;
-}
-function round(number) {
-  let negative = number < 0;
-  if (negative) {
-    number = -number;
+  let counter = 0;
+  while (!(int < 1 && int > -1)) {
+    int -= 1;
+    counter++;
   }
-
-  let intPart = 0;
-  while (number >= 1) {
-    number--;
-    intPart++;
-  }
-
-  if (number < 0.5) {
-    return negative ? -intPart : intPart;
+  if (int < 0.5) {
+    if (neg) {
+      return -counter;
+    } else {
+      return counter;
+    }
   } else {
-    return negative ? -(intPart + 1) : intPart + 1;
+    if (neg) {
+      return -counter - 1;
+    } else {
+      return counter + 1;
+    }
   }
 }
-function ceil(number) {
-  if (number === 0) return 0;
 
-  let negative = number < 0;
-  if (negative) {
-    number = -number;
+function floor(int) {
+  let neg = false;
+  if (int < 0) {
+    neg = true;
+    int = -int;
   }
-
-  let intPart = 0;
-  while (number > 0) {
-    number--;
-    intPart++;
+  let intCopy = int;
+  let counter = 0;
+  while (!(intCopy < 1 && intCopy > -1)) {
+    intCopy -= 1;
+    counter++;
   }
-
-  if (!negative && number !== intPart) {
-    intPart++;
+  if (neg) {
+    return -counter - 1;
+  } else {
+    return counter;
   }
-
-  return negative ? -intPart : intPart;
 }
 
-function floor(number) {
-  let negative = number < 0;
-  if (negative) {
-    number = -number;
+function ceil(int) {
+  if (!int) return 0;
+  let neg = false;
+  if (int < 0) {
+    neg = true;
+    int = -int;
   }
-
-  let intPart = 0;
-  while (number >= 1) {
-    number--;
-    intPart++;
+  let intCopy = int;
+  let counter = 0;
+  while (!(intCopy < 1 && intCopy >= 0)) {
+    intCopy -= 1;
+    counter++;
   }
-
-  return negative ? -(intPart + 1) : intPart;
+  if (neg) {
+    return -counter;
+  } else {
+    return counter + 1;
+  }
 }
-function trunc(number) {
-  number = reduceLargeNumber(number);
 
-  let negative = number < 0;
-  if (negative) {
-    number = -number;
+function trunc(int) {
+  let counter = 0;
+  if (int > 0xfffffffff) {
+    int -= 0xfffffffff;
+    counter += 0xfffffffff;
   }
-
-  let intPart = 0;
-  while (number >= 1) {
-    number--;
-    intPart++;
+  let neg = false;
+  if (int < 0) {
+    neg = true;
+    int = -int;
   }
-
-  return negative ? -intPart : intPart;
+  let intCopy = int;
+  while (!(intCopy < 1 && intCopy > -1)) {
+    intCopy -= 1;
+    counter++;
+  }
+  if (neg) {
+    return -counter;
+  }
+  return counter;
 }
