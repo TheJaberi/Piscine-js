@@ -52,7 +52,7 @@ function ceil(int) {
   }
   let intCopy = int;
   let counter = 0;
-  while (!(intCopy < 1 && intCopy >= 0)) {
+  while (intCopy > 1 || intCopy < 0) {
     intCopy -= 1;
     counter++;
   }
