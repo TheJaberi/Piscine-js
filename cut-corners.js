@@ -1,17 +1,27 @@
 function round(number) {
-  let intnum = parseInt(number);
-  let decimal = number - intnum;
-  return decimal >= 0.5 ? intnum + 1 : intnum;
+  let numStr = number.toString();
+  let [intPart, decimalPart] = numStr.split(".");
+  decimalPart = decimalPart ? `0.${decimalPart}` : "0";
+  return decimalPart >= 0.5 ? Number(intPart) + 1 : Number(intPart);
 }
+
 function ceil(number) {
-  let intnum = parseInt(number);
-  return intnum === number ? intnum : intnum + 1;
+  let numStr = number.toString();
+  if (numStr.includes(".")) {
+    let [intPart] = numStr.split(".");
+    return Number(intPart) + 1;
+  }
+  return number;
 }
+
 function floor(number) {
-  let intnum = parseInt(number);
-  return intnum === number ? intnum : intnum - 1;
+  let numStr = number.toString();
+  let [intPart] = numStr.split(".");
+  return Number(intPart);
 }
+
 function trunc(number) {
-  let intnum = parseInt(number);
-  return intnum;
+  let numStr = number.toString();
+  let [intPart] = numStr.split(".");
+  return Number(intPart);
 }
