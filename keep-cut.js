@@ -19,7 +19,7 @@ function keepLast(str) {
 }
 
 function keepFirstLast(str) {
-  if (str.length <= 3) {
+  if (str.length <= 2) {
     return str;
   }
   return str.slice(0, 2) + str.slice(-2);
