@@ -30,10 +30,9 @@ function floor(int) {
     neg = true;
     int = -int;
   }
-  let intCopy = int;
   let counter = 0;
-  while (!(intCopy < 1 && intCopy > -1)) {
-    intCopy -= 1;
+  while (!(int < 1 && int > -1)) {
+    int -= 1;
     counter++;
   }
   if (neg) {
@@ -50,10 +49,9 @@ function ceil(int) {
     neg = true;
     int = -int;
   }
-  let intCopy = int;
   let counter = 0;
-  while (!(intCopy < 1 && intCopy >= 0)) {
-    intCopy -= 1;
+  while (!(int < 1 && int >= 0)) {
+    int -= 1;
     counter++;
   }
   if (neg) {
@@ -74,9 +72,8 @@ function trunc(int) {
     neg = true;
     int = -int;
   }
-  let intCopy = int;
-  while (!(intCopy < 1 && intCopy > -1)) {
-    intCopy -= 1;
+  while (!(int < 1 && int > -1)) {
+    int -= 1;
     counter++;
   }
   if (neg) {
