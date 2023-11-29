@@ -37,8 +37,13 @@ function ceil(number) {
     intPart++;
   }
 
+  if (!negative && number !== intPart) {
+    intPart++;
+  }
+
   return negative ? -intPart : intPart;
 }
+
 function floor(number) {
   let negative = number < 0;
   if (negative) {
