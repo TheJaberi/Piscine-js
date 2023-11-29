@@ -10,9 +10,6 @@ function cutFirstLast(str) {
 function keepFirst(str) {
   return str.substring(0, 2);
 }
-function keepFirst(str) {
-  return str.substring(0, 2);
-}
 function keepLast(str) {
   return str.substring(str.length - 2);
 }
