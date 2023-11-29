@@ -5,7 +5,7 @@ function round(int) {
     int = -int;
   }
   let counter = 0;
-  while (int != 0) {
+  while (!(int < 1 && int > -1)) {
     int -= 1;
     counter++;
   }
@@ -32,7 +32,7 @@ function floor(int) {
   }
   let intCopy = int;
   let counter = 0;
-  while (int != 0) {
+  while (!(intCopy < 1 && intCopy > -1)) {
     intCopy -= 1;
     counter++;
   }
@@ -52,7 +52,7 @@ function ceil(int) {
   }
   let intCopy = int;
   let counter = 0;
-  while (int != 0) {
+  while (!(intCopy < 1 && intCopy >= 0)) {
     intCopy -= 1;
     counter++;
   }
@@ -75,7 +75,7 @@ function trunc(int) {
     int = -int;
   }
   let intCopy = int;
-  while (int != 0) {
+  while (!(intCopy < 1 && intCopy > -1)) {
     intCopy -= 1;
     counter++;
   }
