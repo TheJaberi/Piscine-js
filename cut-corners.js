@@ -5,7 +5,7 @@ function round(int) {
     int = -int;
   }
   let counter = 0;
-  while (!(int < 1 && int > -1)) {
+  while (int > 1 || int < -1) {
     int -= 1;
     counter++;
   }
