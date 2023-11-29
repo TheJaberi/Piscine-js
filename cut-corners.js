@@ -34,7 +34,7 @@ function separateNumber(num) {
   let negative = num < 0;
   num = Math.abs(num);
   let intPart = 0;
-  while (intPart < num) intPart++;
+  while (intPart < num - 1) intPart++;
 
   let decimalPart = num - intPart;
   return {
