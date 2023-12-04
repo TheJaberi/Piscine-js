@@ -1,6 +1,6 @@
 function firstDayWeek(weekNumber, year) {
   // Parse the year and create a date object for January 1st of that year
-  const yearStart = new Date(year, 0, 1); // Months are 0-indexed in JavaScript
+  const yearStart = new Date(year, 0, 1);
 
   // Calculate the day of the week for January 1st (0 for Sunday, 1 for Monday, etc.)
   const firstDayOfYear = yearStart.getDay();
@@ -9,8 +9,11 @@ function firstDayWeek(weekNumber, year) {
   const daysToNextMonday = firstDayOfYear === 0 ? 1 : 8 - firstDayOfYear;
 
   // Calculate the date of the first Monday of the year
-  const firstMondayOfYear = new Date(yearStart);
-  firstMondayOfYear.setDate(yearStart.getDate() + daysToNextMonday - 7);
+  const firstMondayOfYear = new Date(
+    year,
+    0,
+    1 - firstDayOfYear + daysToNextMonday
+  );
 
   // Calculate the date of the first day of the specified week
   const weekStart = new Date(firstMondayOfYear);
