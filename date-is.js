@@ -1,33 +1,43 @@
 function isValid(date) {
-  return date instanceof Date && !isNaN(date);
-}
-
-function isAfter(date1, date2) {
-  if (!isValid(date1) || !isValid(date2)) {
+  if (new Date(date).toString() === "Invalid Date") {
     return false;
   }
-  return date1 > date2;
-}
-
-function isBefore(date1, date2) {
-  if (!isValid(date1) || !isValid(date2)) {
+  if (!(date instanceof Date) && typeof date !== "number") {
     return false;
   }
-  return date1 < date2;
+  return true;
+}
+
+function isAfter(d1, d2) {
+  if (d1 > d2) {
+    return true;
+  }
+  return false;
+}
+
+function isBefore(d1, d2) {
+  if (d1 < d2) {
+    return true;
+  }
+  return false;
 }
 
 function isFuture(date) {
   if (!isValid(date)) {
     return false;
   }
-  const now = new Date();
-  return date > now;
+  if (new Date(date).getTime() > Date.now()) {
+    return true;
+  }
+  return false;
 }
 
 function isPast(date) {
   if (!isValid(date)) {
     return false;
   }
-  const now = new Date();
-  return date < now;
+  if (new Date(date).getTime() < Date.now()) {
+    return true;
+  }
+  return false;
 }
