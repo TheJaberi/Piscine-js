@@ -1,4 +1,4 @@
-function sunnySunday(date) {
+function bloodySunday(date) {
   let counter = -1;
   const week = [
     "Monday",
