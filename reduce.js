@@ -1,34 +1,29 @@
-const fold = (array, func, accumulator) => {
-  for (let i = 0; i < array.length; i++) {
-    accumulator = func(accumulator, array[i]);
+function fold(arr, f, acc) {
+  for (var i = 0; i < arr.length; i++) {
+    acc = f(acc, arr[i], i, arr);
   }
-  return accumulator;
-};
+  return acc;
+}
 
-const foldRight = (array, func, accumulator) => {
-  for (let i = array.length - 1; i >= 0; i--) {
-    accumulator = func(accumulator, array[i]);
+function foldRight(arr, f, acc) {
+  for (var i = arr.length - 1; i >= 0; i--) {
+    acc = f(acc, arr[i], i, arr);
   }
-  return accumulator;
-};
+  return acc;
+}
 
-const reduce = (array, func) => {
-  if (array.length < 1) {
-return 
+function reduce(arr, f) {
+  let acc = arr[0];
+  for (var i = 1; i < arr.length; i++) {
+    acc = f(acc, arr[i], i, arr);
   }
-  let accumulator = array[0];
-  for (let i = 1; i < array.length; i++) {
-    accumulator = func(accumulator, array[i]);
-  }
-  return accumulator;
-};
+  return acc;
+}
 
-const reduceRight = (array, func) => {
-  if (array.length < 1) {
-return  }
-  let accumulator = array[array.length - 1];
-  for (let i = array.length - 2; i >= 0; i--) {
-    accumulator = func(accumulator, array[i]);
+function reduceRight(arr, f) {
+  let acc = arr[arr.length - 1];
+  for (var i = arr.length - 2; i >= 0; i--) {
+    acc = f(acc, arr[i], i, arr);
   }
-  return accumulator;
-};
+  return acc;
+}

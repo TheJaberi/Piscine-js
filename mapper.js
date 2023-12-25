@@ -1,20 +1,11 @@
-function map(n,func) {
-    let arr = []
-    for (let i = 0 ; i < n.length ; i++) {
-        arr.push(func(n[i],i,n))
-    }
-    return arr
+function map(arr, action) {
+  let res = [];
+  for (let i = 0; i < arr.length; i++) {
+    res.push(action(arr[i], i, arr));
+  }
+  return res;
 }
 
-function flatMap(n, func) {
-  let arr = [];
-  for (let i = 0; i < n.length; i++) {
-    const result = func(n[i], i, n);
-    if (Array.isArray(result)) {
-      arr.push(...result);
-    } else {
-      arr.push(result);
-    }
-  }
-  return arr;
+function flatMap(arr, action) {
+  return arr.reduce((acc, val, i, arr) => acc.concat(action(val, i, arr)), []);
 }

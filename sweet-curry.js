@@ -1,3 +1,21 @@
-const mult2 = (a) => (b) => a * b;
-const add3 = (a) => (b) => (c) => a + b + c;
-const sub4 = (a) => (b) => (c) => (d) => a - b - c - d;
+function mult2(x) {
+  return (y) => x * y;
+}
+
+function add3(x) {
+  return function (y) {
+    return function (z) {
+      return x + y + z;
+    };
+  };
+}
+
+function sub4(x) {
+  return function (y) {
+    return function (z) {
+      return function (w) {
+        return x - y - z - w;
+      };
+    };
+  };
+}

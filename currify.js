@@ -1,11 +1,7 @@
 function currify(fn) {
-  return function curried(...args) {
-    if (args.length >= fn.length) {
-      return fn(...args);
-    } else {
-      return function (...moreArgs) {
-        return curried(...args, ...moreArgs);
-      };
-    }
+  return function currified(...args) {
+    return args.length >= fn.length
+      ? fn(...args)
+      : currified.bind(null, ...args);
   };
 }

@@ -1,30 +1,28 @@
-const filterShortStateName = (n) => n.filter((str) => str.length < 7)
-const vowels = /^[aeiou]/i
-const filterStartVowel = (n) => n.filter((str) => vowels.test(str) )
-const filter5Vowels = (arr) => {
-  return arr.filter((str) => {
-    const vowelCount = (str.match(/[aeiou]/gi) || []).length;
-    return vowelCount >= 5;
-  });
-};
+function filterShortStateName(arr) {
+  return arr.filter((item) => item.length < 7);
+}
 
-const filter1DistinctVowel = (arr) => {
-  return arr.filter((str) => {
-    const vowels = new Set(str.toLowerCase().match(/[aeiou]/g));
-    return vowels.size === 1;
-  });
-};
+function filterStartVowel(arr) {
+  return arr.filter((item) => /^[aeiou]/i.test(item));
+}
 
-const multiFilter = (arr) => {
-  return arr.filter((obj) => {
-    const capital = obj.capital || '';
-    const name = obj.name || '';
-    const tag = obj.tag || '';
-    const region = obj.region || '';
-    const hasLongCapital = capital.length >= 8;
-    const startsWithVowel = !/^[aeiou]/i.test(name);
-    const hasVowelInTag = /[aeiou]/i.test(tag);
-    const isNotSouthRegion = region.toLowerCase() !== 'south';
-    return hasLongCapital && startsWithVowel && hasVowelInTag && isNotSouthRegion;
+function filter5Vowels(arr) {
+  return arr.filter((item) => item.match(/[aeiou]/gi).length >= 5);
+}
+
+function filter1DistinctVowel(arr) {
+  return arr.filter(
+    (item) => new Set(item.toLowerCase().match(/[aeiou]/gi)).size === 1
+  );
+}
+
+function multiFilter(arr) {
+  arr = arr.filter((item) => {
+    let capital = item.capital.length >= 8;
+    let name = !/^[aeiou]/i.test(item.name);
+    let tag = /[aeiou]/i.test(item.tag);
+    let region = item.region !== "South";
+    return capital && name && tag && region;
   });
-};
+  return arr;
+}

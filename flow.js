@@ -1,9 +1,8 @@
-function flow(funcs) {
-  return function(...args) {
-    let result = funcs[0](...args); // Execute the first function with the arguments
-    for (let i = 1; i < funcs.length; i++) {
-      result = funcs[i](result); // Pass the result to the next function
+function flow(arr) {
+  return function (...args) {
+    if (args.length > 1) {
+      args = [arr[0](...args)];
     }
-    return result; // Return the final result
+    return arr.reduce((acc, fn) => fn(acc), args[0]);
   };
 }
