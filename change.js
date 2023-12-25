@@ -1,7 +1,7 @@
-function get(key) {
-  return sourceObject[key];
+function get(key){
+    return sourceObject[key]   
 }
-function set(key, value) {
-  sourceObject[key] = value;
-  return value;
-}
+const set = (key,val) => {
+    sourceObject[key] = val
+    return sourceObject[key]
+} 

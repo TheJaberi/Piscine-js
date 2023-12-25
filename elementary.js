@@ -1,33 +1,65 @@
+
 function multiply(a, b) {
-  let result = 0;
-  const positive = Math.abs(b) === b;
-  for (let i = 0; i < Math.abs(b); i++) {
-    result = positive ? result + a : result - a;
-  }
-  return result;
+    let result = 0;
+    let c = b
+    let flag = false
+    if (b < 0) {
+        b = -b
+        flag = true
+    }
+    while (b > 0) {
+        result += a
+        b--
+    }
+    if (flag) {
+        result = -result
+    }
+    return result
 }
 function divide(a, b) {
-  if (b === 0) {
-    throw new Error("Cannot divide by zero");
-  }
+    let count = 0
+    let flag = false
+    if (a < 0 && b < 0) {
+        a = -a
+        b = -b
+    }
 
-  const absA = Math.abs(a);
-  const absB = Math.abs(b);
-  let result = 0;
-  let sum = absB;
-
-  while (sum <= absA) {
-    sum += absB;
-    result++;
-  }
-
-  return a < 0 === b < 0 ? result : -result;
+    if (a < 0) {
+        a = -a
+        flag = true
+    }
+    if (b < 0) {
+        b = -b
+        flag = true
+    }
+    let result = a
+    while (result > b) {
+        result -= b
+        count++
+    }
+    if (flag) {
+        count = -count
+    }
+    return count
 }
 function modulo(a, b) {
-  if (b === 0) {
-    throw new Error("Cannot modulo by zero");
-  }
-
-  const divisionResult = divide(a, b);
-  return a - multiply(divisionResult, b);
+    let flag = false
+    if (a < 0) {
+        a = -a
+        flag = true
+    }
+    if (b < 0) {
+        b = -b
+    }
+    let result = a
+    let c = b
+    let count = 1
+    while (b < result) {
+        result = result - c
+        count++
+    }
+    if (flag) {
+        result = -result
+    }
+    return result
 }

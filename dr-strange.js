@@ -1,42 +1,26 @@
 function addWeek(date) {
-  // Define the weekdays in the new 14-day week format
-  const weekdays = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-    "secondMonday",
-    "secondTuesday",
-    "secondWednesday",
-    "secondThursday",
-    "secondFriday",
-    "secondSaturday",
-    "secondSunday",
-  ];
-
-  // Epoch date (year 1, January 1st)
-  const epoch = new Date("0001-01-01T00:00:00Z");
-
-  // Calculate the difference in days since the epoch
-  const diffInTime = date.getTime() - epoch.getTime();
-  const diffInDays = Math.floor(diffInTime / (1000 * 3600 * 24));
-
-  // Get the weekday index
-  const weekdayIndex = diffInDays % 14;
-
-  return weekdays[weekdayIndex];
+    let weekDays = [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday'
+    ]
+    let first = new Date('0001-01-01')
+    let weekDayNum = date.getDay()
+    let week = Math.ceil(((date - first + 1) / 86400000) / 7);
+    if (week % 2 != 0) {
+        return weekDays[weekDayNum]
+    } else {
+        return 'second' + weekDays[weekDayNum]
+    }
 }
+
 function timeTravel({ date, hour, minute, second }) {
-  // Create a new date object based on the provided date
-  const newDate = new Date(date);
-
-  // Set the time components if they are provided
-  if (hour !== undefined) newDate.setHours(hour);
-  if (minute !== undefined) newDate.setMinutes(minute);
-  if (second !== undefined) newDate.setSeconds(second);
-
-  return newDate;
+    let year = date.getFullYear()
+    let month = date.getMonth() 
+    let day = date.getDate()
+    return new Date(year, month, day, hour, minute, second)
 }

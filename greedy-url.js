@@ -1,30 +1,30 @@
-const urlExp =
-  /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}(\.[a-zA-Z0-9()]{1,6})?(?:[-a-zA-Z0-9()\[\],@:%_\+.~#?&\/=]*)/g;
 function getURL(dataSet) {
-  let result = dataSet.match(urlExp);
-  return result;
+  var ha = /(http[s]?\:\/\/)[^\s][^\s]*(?=([\s]))/g;
+  return dataSet.match(ha);
 }
-
 function greedyQuery(dataSet) {
-  dataSet = getURL(dataSet);
-  let result = dataSet.filter((url) => {
-    return (
-      url.match(
-        /\?([-a-zA-Z0-9\[\],()@]*=[-a-zA-Z0-9\[\],()@]*&){2,255}([-a-zA-Z0-9\[\],()@]*=[-a-zA-Z0-9\[\],()@]*)/g
-      ) !== null
-    );
-  });
-  return result;
+  let arr = getURL(dataSet);
+  let arr2 = [];
+  var ha = /([^=]*[=]){3,}/g;
+  for (let elem of arr) {
+    if (elem.match(ha) !== null) {
+      arr2.push(elem);
+    }
+  }
+  return arr2;
 }
-
 function notSoGreedy(dataSet) {
-  dataSet = getURL(dataSet);
-  let result = dataSet.filter((url) => {
-    return (
-      url.match(
-        /\?([-a-zA-Z0-9\[\],()@%]*=[-a-zA-Z0-9\[\],()@%]*&){1,2}([-a-zA-Z0-9\[\],()@%]*=[-a-zA-Z0-9\[\],()@%]*)$/g
-      ) !== null
-    );
-  });
-  return result;
+  let arr = getURL(dataSet);
+  let arr2 = [];
+  var ha = /[=]/g;
+  for (let elem of arr) {
+    if (
+      elem.match(ha) !== null &&
+      elem.match(ha).length >= 2 &&
+      elem.match(ha).length <= 3
+    ) {
+      arr2.push(elem);
+    }
+  }
+  return arr2;
 }

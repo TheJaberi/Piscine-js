@@ -1,3 +1,5 @@
-function concatStr(a, b) {
-  return a.toString() + b.toString();
+function concatStr(first,sec){
+    //concatenates == adding them together.
+    let x = String(first)+String(sec);
+    return x
 }

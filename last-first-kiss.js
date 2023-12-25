@@ -1,9 +1,9 @@
-function first(input) {
-  return input[0];
+function first(x){
+    return x[0]
 }
-function last(input) {
-  return input[input.length - 1];
-}
-function kiss(input) {
-  return [last(input), first(input)];
+function last(x){
+    return x[x.length-1]
+    }
+function kiss(x){
+    return [x[x.length-1], x[0]]
 }

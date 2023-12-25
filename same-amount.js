@@ -1,7 +1,13 @@
-function sameAmount(str, rexp1, rexp2) {
-  rexp1 = new RegExp(rexp1, "g");
-  rexp2 = new RegExp(rexp2, "g");
-  let test1 = str.match(rexp1);
-  let test2 = str.match(rexp2);
-  return test1 !== null && test2 !== null && test1.length === test2.length;
+function sameAmount(str, regular1, regular2) {
+  let arr1 = [];
+  let arr2 = [];
+  arr1 = str.match(new RegExp(regular1, "g"));
+  arr2 = str.match(new RegExp(regular2, "g"));
+  if ((arr1 === null && arr2 !== null) || (arr1 !== null && arr2 === null)) {
+    return false;
+  }
+  if (arr1.length === arr2.length) {
+    return true;
+  }
+  return false;
 }

@@ -1,14 +1,11 @@
-function flat(arr, depth) {
-  if (!Array.isArray(arr)) {
-    return arr;
-  }
-  if (depth === 0) {
-    return arr;
-  }
-  if (depth === undefined) {
-    depth = 1;
-  }
-  return arr.reduce((acc, cur) => {
-    return acc.concat(flat(cur, depth - 1));
-  }, []);
+function flat(arr, depth = 1) {
+    if (depth > 0) {
+        return arr.reduce((acc, val) => {
+            if (Array.isArray(val)) {
+                return acc.concat(flat(val, depth - 1))
+            }
+            return acc.concat(val)
+        }, [])
+    }
+    return arr.slice()
 }

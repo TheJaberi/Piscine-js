@@ -1,11 +1,18 @@
 function groupPrice(str) {
-  let prices = str.match(/(([A-Z]{3})|\$)([0-9]+\.[0-9]+)/g);
+  var ha = /(USD)\d*\.\d*|[$]\d*\.\d*/g;
+
+  var ha1 = /\d*(?=\.)/;
+  var ha2 = /\d*$/;
+  let arr = str.match(ha);
   let res = [];
-  if (prices === null) return res;
-  prices.forEach((price, i) => {
-    res.push([price]);
-    res[i].push(price.match(/[0-9]+/g)[0]);
-    res[i].push(price.match(/[0-9]+/g)[1]);
-  });
+  if (arr !== null) {
+    for (let elem of arr) {
+      let newarr = [];
+      newarr.push(elem);
+      newarr.push(ha1.exec(elem)[0]);
+      newarr.push(ha2.exec(elem)[0]);
+      res.push(newarr);
+    }
+  }
   return res;
 }

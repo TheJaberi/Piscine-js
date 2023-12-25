@@ -1,18 +1,10 @@
-function blockChain(data, prev = { index: 0, hash: "0" }) {
-  const index = prev.index + 1;
-  const stringifiedData = JSON.stringify(data);
-  const hashInput = `${index}${prev.hash}${stringifiedData}`;
-  const hash = hashCode(hashInput);
-
-  const block = {
-    index: index,
-    hash: hash,
-    data: data,
-    prev: prev,
-    chain: function (newData) {
-      return blockChain(newData, block);
-    },
-  };
-
-  return block;
+  function blockChain(data,prev = { index: 0, hash: '0' }){
+    let obj  = {
+        data,
+        prev,
+    }
+    obj.index = obj.prev.index + 1
+    obj.hash = hashCode(obj.index+prev.hash+JSON.stringify(data))
+    obj.chain = (data) => blockChain(data,obj)
+    return obj
 }

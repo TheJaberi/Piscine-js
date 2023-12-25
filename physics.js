@@ -1,23 +1,15 @@
-function getAcceleration(properties) {
-  let acceleration;
-
-  if (properties.f !== undefined && properties.m !== undefined) {
-    // Using a = F/m
-    acceleration = properties.f / properties.m;
-  } else if (properties.Δv !== undefined && properties.Δt !== undefined) {
-    // Using a = Δv/Δt
-    acceleration = properties.Δv / properties.Δt;
-  } else if (properties.d !== undefined && properties.t !== undefined) {
-    // Using a = 2d/t^2
-    acceleration = (2 * properties.d) / properties.t ** 2;
-  } else {
-    return "impossible";
-  }
-
-  // Check if the calculated acceleration is finite and valid
-  if (isFinite(acceleration)) {
-    return acceleration;
-  } else {
-    return "impossible";
-  }
+function getAcceleration(obj){
+    let a = obj.f/obj.m
+    let b = obj.Δv/obj.Δt
+    let c = (2*obj.d)/(obj.t*obj.t)
+    let e = 'impossible'
+    if(typeof(obj.f) == 'number'&&typeof(obj.m) == 'number'){
+        return obj.f/obj.m
+    } else if(typeof(obj.Δv) == 'number'&&typeof(obj.Δt) == 'number'){
+        return b
+    } else if(typeof(obj.d) == 'number'&&typeof(obj.t) == 'number'){
+        return c
+    } else {
+        return e
+    }
 }

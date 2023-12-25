@@ -1,25 +1,28 @@
-function sums(n) {
-  if (n < 2) return [];
-  var partitions = [],
-    current = [];
+function sums(num) {
+  let part = genOnes(num);
+  let result = [part.slice()];
 
-  function addPartition() {
-    partitions.push(current.slice());
-  }
+  while (part.length > 1) {
+    let min = Math.min(...part.slice(0, -1));
+    for (let i = 0; i < part.length - 1; i++) {
+      if (part[i] === min) {
+        part[i]++;
+        part[part.length - 1]--;
+        const sum = part.slice(i + 1).reduce((s, a) => s + a, 0);
+        part = part.slice(0, i + 1).concat(genOnes(sum));
 
-  function findPartitions(start, remaining) {
-    if (remaining === 0) {
-      addPartition();
-    } else {
-      for (var i = start; i <= remaining; i++) {
-        current.push(i);
-        findPartitions(i, remaining - i);
-        current.pop();
+        result.push(part.slice().reverse());
       }
     }
   }
 
-  findPartitions(1, n);
+  return result.slice(0, -1).sort();
+}
 
-  return partitions.slice(0, -1);
+function genOnes(num) {
+  let ones = [];
+  for (let i = 0; i < num; i++) {
+    ones.push(1);
+  }
+  return ones;
 }

@@ -1,14 +1,16 @@
-function max(num1, num2) {
-  if (num1 > num2) {
-    return num1;
-  } else {
-    return num2;
-  }
+function max(a,b){
+    if (a>b){
+        return a
+    }
+    if (b>a){
+        return b
+    }
 }
-function min(num1, num2) {
-  if (num1 < num2) {
-    return num1;
-  } else {
-    return num2;
-  }
+function min(a,b){
+    if (a>b){
+        return b
+    }
+    if (b>a){
+        return a
+    }
 }

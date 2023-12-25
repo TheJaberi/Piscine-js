@@ -1,4 +1,7 @@
 function letterSpaceNumber(str) {
-  let arr = str.match(/[a-z] [0-9](?![a-z0-9])/gi);
-  return arr !== null ? arr : [];
+  var r = /(\w\s\d)(?!(\w))/g;
+  if (str.match(r) == null) {
+    return [];
+  }
+  return str.match(r);
 }

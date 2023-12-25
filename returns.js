@@ -1,6 +1,7 @@
-function id(value) {
-  return value;
+function id(n){
+    return n;
 }
-function getLength(input) {
-  return input.length;
+function getLength(n){
+    let x = n.length
+    return x
 }

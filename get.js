@@ -1,8 +1,10 @@
 function get(src, path) {
-  return path.split(".").reduce(function (obj, key) {
-    if (obj === undefined) {
-      return undefined;
+    for (let key of path.split('.')) {
+      if (key in src) {
+        src = src[key];
+      } else {
+        return undefined; // Return undefined if the key or path is invalid
+      }
     }
-    return obj[key];
-  }, src);
+    return src;
 }

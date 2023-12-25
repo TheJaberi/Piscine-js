@@ -1,83 +1,97 @@
-function round(int) {
-  let neg = false;
-  if (int < 0) {
-    neg = true;
-    int = -int;
-  }
-  let counter = 0;
-  while (!(int < 1 && int > -1)) {
-    int -= 1;
-    counter++;
-  }
-  if (int < 0.5) {
-    if (neg) {
-      return -counter;
-    } else {
-      return counter;
+function round(n) {
+    let ost
+    let res
+    let flag = false
+    if (n < 0) {
+        n = -n
+        flag = true
     }
-  } else {
-    if (neg) {
-      return -counter - 1;
-    } else {
-      return counter + 1;
+    ost = n 
+    while (ost >= 1) {
+        ost-=1
     }
-  }
+    if (ost > 0.5) {
+        res = n + 1 - ost 
+    } else {
+        res = n - ost 
+    }
+    if (flag) {
+        res = -res
+    }
+    return res
+}
+function ceil(n) {
+    let ost
+    let res 
+    let flag = false
+    if (n < 0) {
+        n = -n
+        flag = true
+    }
+    ost = n
+    while (ost >= 1) {
+        ost-=1
+    }
+    if (!flag && ost != 0) {
+        return res = n + 1 - ost
+    } else if (ost === 0) {                           
+        return n
+    } else {
+        res = n - ost 
+        return res = -res
+    }
+    return n
+}
+function floor(n) {
+    let ost
+    let res
+    let flag = false
+    if (n < 0) {
+        n = -n
+        flag = true
+    }
+    ost = n
+    while (ost >= 1) {
+        ost-=1
+    }
+    if (!flag && ost != 0) {
+        return res = n - ost                                   
+    } else if (ost === 0) {                           
+        return n
+    } else {
+        res = n - ost + 1
+        return res = -res
+    }
+    return n
+}
+function trunc(n) {
+    let ost
+    let res
+    let flag = false
+    let fflag = false
+    if (n < 0) {
+        n = -n
+        flag = true
+    }
+    if (n > 0xfffffffff) {
+        n-= 0xfffffffff
+        fflag = true
+    }
+    ost = n
+    while (ost >= 1) {
+        ost-=1
+    }
+    if (!fflag && !flag && ost != 0) {
+        return res = n - ost
+    } else if (ost === 0) {                           
+        return n
+    } else if (flag) {
+        res = n - ost
+        return res = -res
+    } else {
+        res = n - ost
+        return res = res + 0xfffffffff
+    }
+    return n
 }
 
-function floor(int) {
-  let neg = false;
-  if (int < 0) {
-    neg = true;
-    int = -int;
-  }
-  let counter = 0;
-  while (!(int < 1 && int > -1)) {
-    int -= 1;
-    counter++;
-  }
-  if (neg) {
-    return -counter - 1;
-  } else {
-    return counter;
-  }
-}
-
-function ceil(int) {
-  if (!int) return 0;
-  let neg = false;
-  if (int < 0) {
-    neg = true;
-    int = -int;
-  }
-  let counter = 0;
-  while (!(int < 1 && int >= 0)) {
-    int -= 1;
-    counter++;
-  }
-  if (neg) {
-    return -counter;
-  } else {
-    return counter + 1;
-  }
-}
-
-function trunc(int) {
-  let counter = 0;
-  if (int > 0xfffffffff) {
-    int -= 0xfffffffff;
-    counter += 0xfffffffff;
-  }
-  let neg = false;
-  if (int < 0) {
-    neg = true;
-    int = -int;
-  }
-  while (!(int < 1 && int > -1)) {
-    int -= 1;
-    counter++;
-  }
-  if (neg) {
-    return -counter;
-  }
-  return counter;
-}

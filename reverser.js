@@ -1,15 +1,15 @@
-function reverse(input) {
-  if (typeof input === "string") {
-    let res = "";
-    for (let i = input.length - 1; i >= 0; i--) {
-      res += input[i];
+function reverse(x){
+    let res
+    if(typeof x === 'string') {
+        res = ""
+        for (let i = x.length-1; i>=0; i--) {
+            res+=x[i]
+        }
+    } else if (Array.isArray(x)) {
+        res = []
+        for (let i = x.length-1; i>=0; i--) {
+            res.push(x[i])
+        }
     }
-    return res;
-  } else if (Array.isArray(input)) {
-    let res = [];
-    for (let i = input.length - 1; i >= 0; i--) {
-      res.push(input[i]);
-    }
-    return res;
-  }
+    return res
 }

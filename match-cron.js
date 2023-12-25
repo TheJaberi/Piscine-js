@@ -1,24 +1,27 @@
-function matchCron(cronString, date) {
-  // Split the cron string into its components
-  const [cronMinute, cronHour, cronDay, cronMonth, cronDayOfWeek] = cronString.split(" ");
+function matchCron(cron, date) {
+    let arr = cron.split(' ')
+    let cronObj = {
+        minute: arr[0],
+        hour: arr[1],
+        dayOfTheMonth: arr[2],
+        monthOfTheYear: arr[3],
+        dayOfTheWeek: arr[4]
+    }
 
-  // Extract components from the date
-  const minute = date.getMinutes();
-  const hour = date.getHours();
-  const day = date.getDate();
-  const month = date.getMonth() + 1; // getMonth() returns 0-11
-  const dayOfWeek = date.getDay() || 7; // getDay() returns 0 for Sunday, we adjust to make 1 for Monday
+    let dateObj = {
+        minute: date.getMinutes(),
+        hour: date.getHours(),
+        dayOfTheMonth: date.getDate(),
+        monthOfTheYear: date.getMonth()+1,
+        dayOfTheWeek: date.getDay()
+    }
 
-  // Function to check if the cron part matches the date part
-  const matches = (cronPart, datePart) =>
-    cronPart === "*" || parseInt(cronPart) === datePart;
-
-  // Check if each part of the cron matches the corresponding part of the date
-  return (
-    matches(cronMinute, minute) &&
-    matches(cronHour, hour) &&
-    matches(cronDay, day) &&
-    matches(cronMonth, month) &&
-    matches(cronDayOfWeek, dayOfWeek)
-  );
+    for (const key in cronObj) {
+        if (cronObj.hasOwnProperty(key)) {
+            if (cronObj[key] != '*' && cronObj[key] != dateObj[key]) {
+                return false
+            }
+        }
+    }
+    return true
 }

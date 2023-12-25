@@ -1,36 +1,33 @@
-function join(arr, sep) {
-  if (sep === null) {
-    sep = ",";
-  }
-  var result = arr[0].toString();
-  for (var i = 1; i < arr.length; i++) {
-    result += sep + arr[i];
-  }
-  return result;
+function split(n, sp) {
+    let z = [];
+    let v = "";
+    if (sp.length == "") {
+        for (let i = 0; i < n.length; i++) {
+            z.push(n[i])
+        }
+        return z
+    }
+    for (let i = 0; i < n.length; i++) {
+
+        if (n.slice(i, i + sp.length) === sp) {
+            z.push(v);
+            v = "";
+            if (!sp.length == "") {
+            i += sp.length - 1; // Skip the separator
+            }
+        } else {
+            v += n[i];
+        }
+    }
+    z.push(v); // Push the remaining part of the string
+    return z;
 }
 
-function split(str, sep) {
-  // Split a given string using a multi-character separator
-  // and return an array of the results.
-  if (sep === null) {
-    sep = ",";
-  }
-  var result = [];
-  if (sep === "") {
-    for (var i = 0; i < str.length; i++) {
-      result.push(str[i]);
+function join(n, jo) {
+    let z = ""
+    for (let i = 0; i < n.length-1; i++) {
+        z += n[i] + jo
     }
-    return result;
-  }
-  var end = str.indexOf(sep);
-  while (end > -1) {
-    end = str.indexOf(sep);
-    if (end === -1) {
-      break;
-    }
-    result.push(str.slice(0, end));
-    str = str.slice(end + sep.length);
-  }
-  result.push(str);
-  return result;
+    z+= n[n.length-1]
+    return z
 }

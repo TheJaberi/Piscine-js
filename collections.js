@@ -1,57 +1,86 @@
-function arrToSet(arr) {
-  return new Set(arr);
+const arrToSet = (arr) => {
+    let set = new Set
+    for(let i = 0;i<arr.length;i++){
+        set.add(arr[i])
+    }
+    return set
 }
-function arrToStr(arr) {
-  return arr.join("");
+const arrToStr = (arr) => {
+    let str = ''
+    for(let i = 0;i<arr.length;i++){
+        str += arr[i]
+    }
+    return str
 }
-function setToArr(set) {
-  return [...set];
+const setToArr = (set) => {
+    let arr = Array.from(set)
+    return arr
 }
-function setToStr(set) {
-  return [...set].join("");
+const setToStr = (set) => {
+    let str = ''
+    for (let item of set.values()) str += item;
+    return str
 }
-function strToArr(str) {
-  return [...str];
+const strToArr = (str) => {
+    let arr = Array.from(str)
+    return arr
 }
-function strToSet(str) {
-  return new Set(str);
+const strToSet = (str) => {
+    let set = new Set
+    for(let i = 0;i<str.length;i++){
+        set.add(str[i])
+    }
+    return set
 }
-function mapToObj(map) {
-  return Object.fromEntries(map);
+const mapToObj = (map) => {
+    let obj = {}
+    for (var [key, value] of map.entries()) {
+        obj[key] = value
+      }
+    return obj
 }
-function objToArr(obj) {
-  return Object.values(obj);
+const objToArr = (obj) => {
+    let arr = []
+    for (const [key, value] of Object.entries(obj)) {
+        arr.push(value)
+      }
+    return arr
 }
-function objToMap(obj) {
-  return new Map(Object.entries(obj));
+const objToMap = (obj) => {
+    let map = new Map
+    for (let key in obj) {
+        map.set(key, obj[key])
+      }
+    return map
+} 
+const arrToObj = (arr) => {
+    let obj = {}
+    for(let i = 0;i<arr.length;i++){
+        obj[i] = arr[i]
+    }
+    return obj
 }
-function arrToObj(arr) {
-  return Object.assign({}, arr);
+const strToObj = (str) => {
+    let obj = {}
+    for(let i = 0;i<str.length;i++){
+        obj[i] = str[i]
+    }
+    return obj
 }
-function strToObj(str) {
-  return Object.assign({}, str);
-}
+const superTypeOf = (e) => {
+    if (e=== null) return 'null'
 
-function superTypeOf(value) {
-  if (Array.isArray(value)) {
-    return "Array";
-  } else if (value instanceof Set) {
-    return "Set";
-  } else if (value instanceof Map) {
-    return "Map";
-  } else if (value === null) {
-    return "null";
-  } else if (typeof value === "object") {
-    return "Object";
-  } else if (typeof value === "string") {
-    return "String";
-  } else if (typeof value === "number") {
-    return "Number";
-  } else if (typeof value === "boolean") {
-    return "Boolean";
-  } else if (typeof value === "undefined") {
-    return "undefined";
-  } else if (typeof value === "function") {
-    return "Function";
+  let instances = { Set, Map, Array, Function }
+
+  for (let key in instances) {
+    // console.log(key, instances[key])
+    if (e instanceof instances[key]) return key
   }
+
+  let types = { Number: 'number', String: 'string', Object: 'object' }
+  for (let key in types) {
+    if (typeof e=== types[key]) return key
+  }
+
+  return typeof e
 }

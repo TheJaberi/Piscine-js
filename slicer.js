@@ -1,22 +1,26 @@
-function slice(arrOrStr, start, end) {
-  let result = Array.isArray(arrOrStr) ? [] : "";
-  let length = arrOrStr.length;
-
-  // Adjusting negative indices
-  start = start < 0 ? length + start : start;
-  end = end === undefined ? length : end < 0 ? length + end : end;
-
-  // Clamping start and end to the valid range
-  start = start > length ? length : start;
-  end = end > length ? length : end < 0 ? 0 : end;
-
-  for (let i = start; i < end; i++) {
-    if (Array.isArray(arrOrStr)) {
-      result.push(arrOrStr[i]);
-    } else {
-      result += arrOrStr[i];
+function slice(str, start = 0, end = str.length) {
+    if (start < 0) {
+        start = -start
+        start = str.length - start
     }
-  }
-
-  return result;
+    if (end < 0) {
+        end = -end
+        end = str.length - end
+    }
+    let res = ''
+    let arr = []
+    for (let i = 0; i <= str.length - 1; i++) {
+    if (i >= start && i < end) {
+        if (typeof str == 'string') {
+            res += str[i]
+        } else if (Array.isArray(str)) {
+             arr.push(str[i])
+        }
+            console.log(str[i])
+        }
+    }
+    if (typeof str == 'string') {
+        return res
+    }
+    return arr
 }
